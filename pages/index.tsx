@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Button } from '@chakra-ui/button';
 import { Grid, Link, Stack, Text } from '@chakra-ui/layout';
+import { Button } from '@chakra-ui/react';
 import { GetStaticProps } from 'next';
 
 import api from '../product/api';
@@ -22,23 +22,8 @@ const IndexRoute: React.FC<Props> = ({ products }) => {
 
   const text = React.useMemo(() => {
     return cart
-      .reduce(
-        (message, product) =>
-          message.concat(
-            `* ${product.title} - ${parseCurrency(
-              product.price
-            )}\n`
-          ),
-        ``
-      )
-      .concat(
-        `\nTotal: ${parseCurrency(
-          cart.reduce(
-            (total, product) => (total += product.price),
-            0
-          )
-        )}`
-      );
+      .reduce((message, product) => message.concat(`* ${product.title} - ${parseCurrency(product.price)}\n`), ``)
+      .concat(`\nTotal: ${parseCurrency(cart.reduce((total, product) => (total += product.price), 0))}`);
   }, [cart]);
 
   const handleAddToCart = (product: Product) => {
@@ -47,18 +32,12 @@ const IndexRoute: React.FC<Props> = ({ products }) => {
 
   return (
     <Stack>
-      <Grid
-        gap={6}
-        templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
-      >
+      <Grid gap={6} templateColumns="repeat(auto-fill, minmax(200px, 1fr))">
         {products.map((product) => (
-          <Stack key={product.id} bg="gray.300">
+          <Stack key={product.id} bg="gray.100">
             <Text>{product.title}</Text>
             <Text>{parseCurrency(product.price)}</Text>
-            <Button
-              colorScheme="pink"
-              onClick={() => handleAddToCart(product)}
-            >
+            <Button colorScheme="primary" onClick={() => handleAddToCart(product)}>
               Agregar
             </Button>
           </Stack>
@@ -70,14 +49,12 @@ const IndexRoute: React.FC<Props> = ({ products }) => {
           <Button
             isExternal
             as={Link}
-            colorScheme="pink"
-            href={`https://wa.me/5491150065693?text=${encodeURIComponent(
-              text
-            )}`}
+            colorScheme="primary"
+            href={`https://wa.me/5491150065693?text=${encodeURIComponent(text)}`}
           >
             Completar pedido
           </Button>
-          <Text bg="pink.100" color="black">
+          <Text bg="primary.300" color="black">
             {text}
           </Text>
         </>
