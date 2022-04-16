@@ -33,7 +33,7 @@ const IndexRoute: React.FC<Props> = ({ products }) => {
     <Stack spacing={6}>
       <Grid gap={6} templateColumns="repeat(auto-fill, minmax(200px, 1fr))">
         {products.map((product) => (
-          <Stack key={product.id} bg="gray.100" borderRadius="md" padding={4}>
+          <Stack key={product.id} bg="gray.900" borderRadius="md" padding={6}>
             <Stack spacing={1}>
               <Image src={product.image} />
               <Text>{product.title}</Text>
