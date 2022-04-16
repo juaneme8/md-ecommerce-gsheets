@@ -8,6 +8,8 @@ This is a Next.js project based on an idea of [goncy](https://github.com/goncy) 
 * Chakra-UI
 
 ## Screenshot
+![image](https://user-images.githubusercontent.com/44928453/163694529-3bec0b0a-645e-4b84-81b4-ed563fbc76e5.png)
+
 
 ## Getting Started
 Create a `.env.local` file with the following environmental variables:
